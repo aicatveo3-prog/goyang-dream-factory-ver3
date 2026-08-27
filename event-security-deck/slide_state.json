@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "title": "YOUTH ECHO 행사 운영·보안 아키텍처",
+    "created": 1787245756.986,
+    "last_updated": 1787246389.632,
+    "total_slides": 12
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "success_criteria",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "participant_journey",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "data_zones",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "completion_flow",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "hash_security",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "role_separation",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "notice_and_control",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "logging_retention",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "day_of_checklist",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "recommendation",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "references",
+      "state": "edited",
+      "pageNum": 12
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "YOUTH ECHO 행사 운영·보안 아키텍처",
+      "summary": "개인정보를 수집하지 않는 현장 AR 게임과 1회용 경품 코드 운영안."
+    },
+    {
+      "id": "success_criteria",
+      "title": "재미와 안전을 함께 지키는 행사",
+      "summary": "참가자·운영자·개인정보 최소화 관점의 성공 기준."
+    },
+    {
+      "id": "participant_journey",
+      "title": "참가자 여정",
+      "summary": "시작·완주 확인·경품 수령의 3단계 흐름."
+    },
+    {
+      "id": "data_zones",
+      "title": "데이터는 세 구역으로 나눈다",
+      "summary": "기기 내 게임 기록, 해시된 경품 코드, 운영 기록의 저장 범위."
+    },
+    {
+      "id": "completion_flow",
+      "title": "현장 확인 후 1회용 코드를 발급한다",
+      "summary": "공개 생성 없이 운영자 검증 뒤 코드 발급·수령 처리."
+    },
+    {
+      "id": "hash_security",
+      "title": "서버는 해시만 저장한다",
+      "summary": "난수 코드, 해시 저장, 짧은 유효기간, 운영자 권한을 설명.",
+      "image_plan": "/home/ubuntu/upload/search_images/0lyD2qrjnBji.jpg - Cybersecurity and data protection shield representation for hash storage topic"
+    },
+    {
+      "id": "role_separation",
+      "title": "참가자와 운영자의 권한을 분리한다",
+      "summary": "각 역할별 허용·금지 작업을 비교."
+    },
+    {
+      "id": "notice_and_control",
+      "title": "짧은 고지와 즉시 삭제",
+      "summary": "행사 안내 팝업과 기기 내 데이터 삭제 통제 방식.",
+      "image_plan": "/home/ubuntu/upload/search_images/0PoFcOwG00IT.jpg - Data minimization visual representation matching the text"
+    },
+    {
+      "id": "logging_retention",
+      "title": "필요한 사건만 기록하고 짧게 보관한다",
+      "summary": "로그 범위, 민감값 제외, 보관·삭제 원칙."
+    },
+    {
+      "id": "day_of_checklist",
+      "title": "행사 당일 추가 준비물",
+      "summary": "입장·완주·경품·네트워크·접근성·종료 단계 체크리스트.",
+      "image_plan": "/home/ubuntu/upload/pasted_file_0UYpT5_image.png - Registration desk items and event badges visual matching preparation table"
+    },
+    {
+      "id": "recommendation",
+      "title": "권장 운영안",
+      "summary": "현재 구현·행사 전 결정·행사 당일 확인·다음 단계."
+    },
+    {
+      "id": "references",
+      "title": "References",
+      "summary": "OWASP 및 NIST 근거 문서."
+    }
+  ]
+}

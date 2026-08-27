@@ -1,0 +1,158 @@
+/* 설계 원칙: 로고는 독립된 상단 안전 영역에 두고, 도감은 캐릭터·관계 기록을 짧은 가로 흐름으로 읽는다. 아이보리 여백과 청록 접점만 남겨 화면 침범을 막는다. */
+
+/* 상단 공통 헤더: 로고·제목·시스템 표시가 서로 다른 세로 영역을 사용한다. */
+.pixel-top{height:70px!important;padding:10px 14px!important;background:#f7f1e3f5!important}
+.pixel-top::after,.pixel-brand::after{display:none!important}
+.pixel-brand{gap:7px!important;padding:0!important;border-bottom:0!important;line-height:.9!important}
+.pixel-brand img{width:31px!important;height:31px!important}
+.pixel-brand span{padding:0!important}
+.sys{gap:6px!important;font-size:8px!important}
+.sys button{padding:5px!important}
+
+/* 모든 상단 안내 패널은 헤더 아래에서 시작한다. */
+.floor-hud{top:78px!important}
+.adventure-hud{top:78px!important}
+.ar-status{top:80px!important;left:13px!important}
+.ar-status span,.ar-status b{font-size:0!important}
+.ar-status span::after{content:"현장 AR"!important;font-size:10px!important}
+.ar-status b::after{content:"청년 신호 탐색 중"!important;font-size:10px!important}
+.random-chip{top:120px!important;right:auto!important;left:50%!important;font-size:0!important;transform:translateX(-50%)!important}
+.random-chip svg{display:none!important}
+.random-chip::after{content:"다른 청년 신호 찾기"!important;font-size:10px!important}
+.ar-hud-toggle,.ar-heading-control,.virtual-zone{display:none!important}
+.ar-view:not(.hud-open) .ar-mission.found{right:12px!important;bottom:80px!important;left:12px!important}
+
+/* 하단 메뉴는 작은 상자 안의 여백은 줄이고, 아이콘은 크게 유지한다. */
+nav.pixel-nav{height:72px!important;padding:3px 3px 2px!important}
+nav.pixel-nav button{gap:1px!important;font-size:8px!important}
+nav.pixel-nav button svg{width:27px!important;height:27px!important}
+.cards-view,.bag-view{padding-bottom:86px!important}
+.ar-mission,.talk-panel,.success-panel,.fail-note{bottom:80px!important}
+
+/* 도감 목록: 캐릭터는 카드 상단 슬롯, 이름·관계 기록은 오른쪽의 세 줄 리듬으로 정렬한다. */
+.archive-view{padding:84px 13px 86px!important}
+.archive-view .title-block{margin:0 0 12px!important}
+.archive-view .title-block h1{margin:3px 0 4px!important;font-size:26px!important;line-height:1.08!important}
+.archive-grid{gap:7px!important}
+.archive-card{grid-template-columns:104px minmax(0,1fr)!important;min-height:116px!important;padding:7px 8px!important;gap:8px!important;overflow:hidden!important;background:#fffaf0!important}
+.archive-card::before{position:absolute!important;z-index:0!important;top:18px!important;left:21px!important;width:62px!important;height:62px!important;content:""!important;border:1px dashed #75afa799!important;box-shadow:0 0 0 5px #75afa70d!important;transform:rotate(45deg)!important}
+.archive-card>img{position:relative!important;z-index:1!important;width:100px!important;height:104px!important;align-self:start!important;object-position:center bottom!important;transform:translateY(-5px) scale(1.13)!important;transform-origin:center bottom!important}
+.archive-stamp{position:absolute!important;z-index:2!important;top:7px!important;left:8px!important;padding:2px 4px!important;color:var(--i)!important;background:#f7f1e3e8!important;border:1px solid #75afa788!important;font:7px 'IBM Plex Mono',monospace!important;letter-spacing:.25px!important}
+.archive-card>div{display:grid!important;min-width:0!important;grid-template-columns:auto minmax(0,1fr)!important;grid-template-rows:14px 26px 19px!important;column-gap:7px!important;align-content:start!important}
+.archive-card small{grid-column:1/-1!important;align-self:start!important;overflow:hidden!important;font-size:8px!important;line-height:1.2!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+.archive-card b{grid-column:1!important;align-self:center!important;margin:0!important;font-size:18px!important;line-height:1!important;white-space:nowrap!important}
+.archive-card em{grid-column:2!important;align-self:center!important;overflow:hidden!important;font-size:8px!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+.archive-card label{grid-column:1!important;display:grid!important;grid-template-columns:auto auto 48px!important;gap:3px!important;align-items:center!important;align-self:center!important;margin:0!important;font-size:8px!important;white-space:nowrap!important}
+.archive-card label strong{font-size:9px!important}.archive-card label i{width:48px!important;height:5px!important}
+.archive-card p{grid-column:2!important;align-self:center!important;overflow:hidden!important;margin:0!important;font-size:8px!important;line-height:1.2!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+.archive-card .archive-open{top:8px!important;right:7px!important;bottom:auto!important;width:14px!important;height:14px!important}
+
+/* 상세 도감: 캐릭터와 이름을 같은 상단 행에 올리고, 관계 수치는 한 줄로 응축한다. */
+.archive-profile-hero{grid-template-columns:140px minmax(0,1fr)!important;min-height:188px!important;padding:10px!important;gap:10px!important;align-items:start!important;overflow:hidden!important}
+.archive-profile-hero img{width:136px!important;height:166px!important;align-self:start!important;object-position:center bottom!important;transform:translateY(-8px) scale(1.13)!important;transform-origin:center bottom!important}
+.archive-profile-hero>div{align-self:start!important;padding-top:8px!important}
+.archive-profile-hero h1{margin:4px 0!important;font-size:25px!important;line-height:1!important}
+.archive-profile-hero p{margin:0 0 6px!important;font-size:9px!important;line-height:1.35!important}
+.archive-profile-record{display:grid!important;grid-template-columns:auto auto minmax(48px,1fr) minmax(0,1.2fr)!important;gap:6px!important;align-items:center!important;margin-top:10px!important;padding:9px 10px!important}
+.archive-profile-record>span{margin:0!important;white-space:nowrap!important;font-size:8px!important}
+.archive-profile-record b{margin:0!important;font-size:13px!important;white-space:nowrap!important}
+.archive-profile-record i{height:6px!important;margin:0!important}.archive-profile-record p{overflow:hidden!important;margin:0!important;font-size:8px!important;line-height:1.2!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+
+/* 현장 조우의 실제 부유감은 위치 보정과 독립적으로 유지한다. */
+.ar-person.found .ar-figure{animation:ar-layout-float 1.85s ease-in-out infinite!important}
+@keyframes ar-layout-float{0%,100%{transform:translateY(0);opacity:.94;filter:drop-shadow(2px 11px 5px #1d45568f) brightness(1)}50%{transform:translateY(-10px);opacity:1;filter:drop-shadow(0 0 14px #75afa7bb) drop-shadow(2px 11px 5px #1d45568f) brightness(1.12)}}
+
+@media (max-width:380px){.archive-card{grid-template-columns:94px minmax(0,1fr)!important}.archive-card>img{width:91px!important}.archive-profile-hero{grid-template-columns:124px minmax(0,1fr)!important}.archive-profile-hero img{width:120px!important}.archive-profile-record{grid-template-columns:auto auto minmax(36px,1fr)!important}.archive-profile-record p{display:none!important}}
+
+/* 제목은 목록의 성격을 즉시 전달하는 한 줄 표지로, 카드의 인물은 작은 탐지 프레임 안에서 정보와 균형을 이룬다. */
+.archive-view .title-block,.bag-view .title-block{margin:0 0 13px!important}
+.archive-view .title-block h1,.bag-view .title-block h1{display:block!important;overflow:visible!important;margin:4px 0 5px!important;color:var(--i)!important;font-size:25px!important;line-height:1.1!important;letter-spacing:-1.35px!important;white-space:nowrap!important}
+.archive-view .title-block h1 br,.bag-view .title-block h1 br{display:none!important}
+.archive-view .title-block h1 b,.bag-view .title-block h1 b{margin-left:.24em!important;color:var(--c)!important}
+.archive-view .title-block p,.bag-view .title-block p{color:#1d4556c7!important;font-size:10px!important;font-weight:500!important}
+.archive-card{grid-template-columns:92px minmax(0,1fr)!important;min-height:108px!important;gap:6px!important;padding:7px!important}
+.archive-card::before{top:26px!important;left:19px!important;width:54px!important;height:54px!important;border-color:#75afa77a!important;box-shadow:0 0 0 4px #75afa70a!important;transform:rotate(45deg)!important}
+.archive-card>img{width:88px!important;height:96px!important;align-self:center!important;transform:translateY(-7px) scale(1.32)!important;transform-origin:center bottom!important}
+.archive-stamp{top:6px!important;left:6px!important;font-size:6px!important}
+.archive-card>div{grid-template-rows:14px 23px 18px!important;column-gap:6px!important}
+.archive-card b{font-size:17px!important}.archive-card em{font-size:8px!important}.archive-card label{grid-template-columns:auto auto 43px!important}.archive-card label i{width:43px!important}.archive-card p{font-size:7.5px!important}
+
+/* 목록 썸네일은 장식 프레임 없이 인물 자체를 크게 보여 주고, 정보는 가독성 높은 세 줄로 정리한다. */
+.archive-card{grid-template-columns:108px minmax(0,1fr)!important;min-height:122px!important;gap:7px!important;padding:8px!important}
+.archive-card::before{content:none!important;display:none!important}
+.archive-card>img{width:104px!important;height:110px!important;align-self:center!important;transform:translateY(-10px) scale(1.58)!important;transform-origin:center bottom!important}
+.archive-stamp{top:7px!important;left:8px!important;font-size:7px!important}
+.archive-card>div{grid-template-rows:16px 28px 22px!important;column-gap:7px!important}
+.archive-card small{font-size:9px!important}.archive-card b{font-size:20px!important}.archive-card em{font-size:9px!important}.archive-card label{grid-template-columns:auto auto 50px!important;font-size:9px!important}.archive-card label strong{font-size:10px!important}.archive-card label i{width:50px!important;height:6px!important}.archive-card p{font-size:8.5px!important}
+.archive-card .archive-open{top:10px!important;right:9px!important;width:16px!important;height:16px!important}
+.archive-view{padding-bottom:78px!important}.archive-detail-view{padding-bottom:78px!important}
+
+/* 상세는 인물과 이름을 하나의 가로 프레임에 고정하고, 투명 PNG의 여백은 확대·하단 정렬로 보정한다. */
+.archive-profile-hero{grid-template-columns:158px minmax(0,1fr)!important;min-height:198px!important;padding:8px 10px!important;gap:8px!important;align-items:center!important}
+.archive-profile-hero img{width:150px!important;height:178px!important;align-self:end!important;transform:translateY(-9px) scale(1.42)!important;transform-origin:center bottom!important}
+.archive-profile-hero>div{align-self:center!important;padding-top:0!important}.archive-profile-hero small{font-size:9px!important}.archive-profile-hero h1{font-size:29px!important}.archive-profile-hero p{font-size:11px!important}.archive-profile-hero em{font-size:9px!important}
+@media (max-width:380px){.archive-card{grid-template-columns:96px minmax(0,1fr)!important}.archive-card>img{width:94px!important}.archive-profile-hero{grid-template-columns:142px minmax(0,1fr)!important}.archive-profile-hero img{width:136px!important}}
+
+/* 조우 카드는 이름·기억된 말을 한 줄로 읽고, 대화 행동은 끝 버튼으로 분리한다. */
+.ar-mission.found{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:7px!important;min-height:0!important;padding:8px 9px!important}
+.ar-mission.found>b{grid-column:1!important;margin:0!important;font-size:12px!important;white-space:nowrap!important}
+.ar-mission.found .memory-line{grid-column:2!important;display:block!important;min-width:0!important;margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;font-size:9px!important;line-height:1!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+.ar-mission.found button{grid-column:3!important;position:static!important;width:auto!important;padding:7px 8px!important;font-size:10px!important;white-space:nowrap!important}.ar-mission.found button::before{content:none!important}.ar-mission.found button svg{display:none!important}
+
+/* 조우 카드에는 점선 장식을 쓰지 않고, 이름·안내·행동을 또렷한 한 줄로 분리한다. */
+.ar-mission::after,.ar-mission.found::after{display:none!important;content:none!important}
+.ar-mission.found{min-height:50px!important;padding:8px 10px!important;background:#f7f1e3fa!important;border-top:2px solid var(--a)!important;box-shadow:3px 3px 0 #1d455650!important}
+.ar-mission.found>b{overflow:hidden!important;color:var(--i)!important;font-size:13px!important;text-overflow:ellipsis!important}
+.ar-mission.found .memory-line{color:#1d4556c7!important;font-size:10px!important;font-weight:600!important}
+.ar-mission.found button{color:var(--p)!important;background:var(--i)!important;border:1px solid var(--c)!important;box-shadow:2px 2px 0 var(--c)!important}
+
+/* transform 규칙과 분리된 translate 속성으로 실제 PNG 레이어를 위아래로 움직인다. */
+.ar-person.found{animation:none!important;transform:translate(-50%,-50%)!important}
+.ar-person.found .ar-figure{translate:0 0!important;animation:ar-force-float 1.25s ease-in-out infinite!important;will-change:translate!important}
+@keyframes ar-force-float{0%,100%{translate:0 0;filter:drop-shadow(2px 12px 5px #1d45568f) brightness(1)}50%{translate:0 -18px;filter:drop-shadow(0 0 16px #75afa7b8) drop-shadow(2px 12px 5px #1d45568f) brightness(1.14)}}
+@media (prefers-reduced-motion:reduce){.ar-person.found .ar-figure{animation:ar-force-float 1.25s ease-in-out infinite!important}}
+
+/* 배틀은 박사 영역을 작게 위쪽에 고정하고, 체력·속성·조작 패널을 아래로 단계 분리한다. */
+.battle-view .battle-head{top:75px!important;min-height:39px!important}.battle-view .battle-head b{font-size:18px!important}.battle-view .battle-head p{font-size:7px!important}
+.battle-view .battle-opponent{top:116px!important;width:160px!important}.battle-view .battle-opponent.doctor img{width:140px!important;height:142px!important}.battle-view .battle-opponent small{font-size:7px!important}.battle-view .battle-opponent span{margin-top:-12px!important;font-size:7px!important}.battle-view .battle-opponent.doctor span{margin-top:-18px!important}
+.battle-view .combat-hp{top:246px!important;right:22px!important;left:22px!important}.battle-view .versus{top:278px!important;right:17px!important;left:17px!important}.battle-view .versus>div{min-height:51px!important;padding:5px!important}.battle-view .versus small,.battle-view .versus span{font-size:7px!important}.battle-view .versus b{font-size:14px!important}
+.battle-view .battle-box{bottom:72px!important;max-height:calc(100% - 355px)!important;padding:7px 9px!important}.battle-view .battle-cards button{min-height:48px!important}.battle-view .execute{padding:7px!important}
+
+/* 잠유진은 앉아 있는 실루엣이므로 AR에서만 한 단계 크게 표시한다. */
+.ar-person.character-sleep:not(.character-sleep-wide){width:264px!important;height:462px!important}.ar-person.character-sleep:not(.character-sleep-wide) .ar-figure{background-size:215% auto!important}
+
+/* 행사 안내·기기 내 데이터 삭제 안내 */
+.event-overlay{position:absolute;inset:0;z-index:90;display:grid;place-items:center;padding:18px;background:#1d4556b8;backdrop-filter:blur(3px)}.event-modal{width:min(100%,330px);padding:21px 18px 17px;border:2px solid var(--i);background:var(--p);box-shadow:6px 6px 0 var(--c);color:var(--i)}.event-modal>span{font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--a)}.event-modal h2{margin:7px 0 9px;font-size:21px;line-height:1.18}.event-modal h2 b{color:var(--a)}.event-modal p,.event-modal li{font-size:11px;line-height:1.5}.event-modal ul{display:grid;gap:5px;margin:11px 0 14px;padding-left:17px}.event-modal>button,.event-modal>div button{border:1px solid var(--i);background:var(--i);color:var(--p);padding:10px 12px;font-size:11px;font-weight:800}.event-modal.delete-confirm>div{display:grid;grid-template-columns:1fr 1fr;gap:7px}.event-modal .danger{background:#a64135}.local-data-delete{width:100%;margin-top:8px;padding:10px;border:1px solid #a64135;background:transparent;color:#a64135;font-size:10px;font-weight:800}.operator-page{min-height:100vh;padding:28px;background:#f7f1e3;color:#1d4556}.operator-page>header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;max-width:980px;margin:0 auto 24px}.operator-page>header>svg{width:46px;height:46px;color:#75afa7}.operator-page span{font-size:10px;font-weight:800;letter-spacing:.1em;color:#c9905f}.operator-page h1{margin:6px 0;font-size:30px}.operator-page>header p{max-width:630px;margin:0;font-size:13px;line-height:1.5}.operator-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:980px;margin:0 auto}.operator-card{display:grid;gap:10px;padding:20px;border:2px solid #1d4556;background:#fffdf7;box-shadow:4px 4px 0 #75afa7}.operator-card>svg{width:25px;height:25px;color:#75afa7}.operator-card h2{margin:0;font-size:20px}.operator-card p,.operator-card li{margin:0;font-size:12px;line-height:1.5}.operator-card label{display:grid;gap:5px;font-size:10px;font-weight:800}.operator-card input{padding:10px;border:1px solid #1d4556;background:#f7f1e3;color:#1d4556}.operator-card button{padding:11px;border:1px solid #1d4556;background:#1d4556;color:#f7f1e3;font-weight:800}.operator-card button:disabled{opacity:.5}.operator-guide{grid-column:1/-1}.operator-guide ol{display:grid;gap:5px;margin:0;padding-left:20px}.operator-guide>p{padding:10px;background:#eaf1ec;color:#1d4556}.issued-code{padding:11px;border:1px dashed #75afa7;background:#eaf1ec}.issued-code small{display:block;font-size:9px}.issued-code b{display:block;margin:4px 0;font-size:17px;letter-spacing:.06em}.issued-code p{font-size:10px}@media(max-width:700px){.operator-page{padding:18px}.operator-grid{grid-template-columns:1fr}.operator-guide{grid-column:auto}.operator-page h1{font-size:24px}}
+.local-data-erased{margin:8px 0 0;padding:9px 10px 0;min-height:38px;border:3px solid #75afa7;background:#eff8f5;color:#1d4556;font-size:13px;font-weight:900}
+
+/* 배틀은 상단 기록→상대→속성 대결→조작의 순서가 겹치지 않는 네 개의 세로 구획을 사용한다. */
+.battle-view .battle-head{top:78px!important;min-height:44px!important;padding:0 26px!important}.battle-view .battle-head b{margin:2px 0!important;font-size:19px!important}.battle-view .battle-head p{max-width:278px!important;margin:0 auto!important;font-size:8px!important;line-height:1.25!important}
+.battle-view .battle-opponent{top:128px!important;width:182px!important}.battle-view .battle-opponent.doctor img{width:166px!important;height:164px!important;transform:none!important}.battle-view .battle-opponent.sigh img{width:180px!important;height:164px!important}.battle-view .battle-opponent span{margin-top:-17px!important;font-size:8px!important}.battle-view .battle-opponent.doctor span{margin-top:-25px!important}
+.battle-view .combat-hp{top:278px!important;right:20px!important;left:20px!important}.battle-view .versus{top:312px!important;right:15px!important;left:15px!important}.battle-view .versus>div{min-height:54px!important;padding:6px!important}.battle-view .versus b{font-size:15px!important}
+.battle-view .battle-box{right:8px!important;bottom:72px!important;left:8px!important;max-height:calc(100% - 405px)!important;overflow-y:auto!important;padding:8px 10px!important;border:2px solid var(--a)!important}.battle-view .round-row{font-size:8px!important}.battle-view .battle-steps{margin:4px 0!important;padding:4px 2px!important;font-size:7px!important}.battle-view .battle-steps b{font-size:7px!important}.battle-view .battle-cards{padding-bottom:4px!important}.battle-view .battle-cards button{min-height:52px!important}.battle-view .execute{padding:8px!important}
+
+/* 상단 조작은 헤더 바로 아래의 오른쪽 안전 영역에, 청년은 그보다 낮은 탐지 지점에 둔다. */
+.random-chip{top:74px!important;right:12px!important;left:auto!important;transform:none!important;z-index:24!important}
+.ar-person.found{z-index:22!important}
+.ar-person.found .ar-figure{animation:ar-visible-bob 1.55s cubic-bezier(.42,0,.58,1) infinite!important;will-change:transform!important}
+@keyframes ar-visible-bob{0%,100%{transform:translate3d(0,0,0);filter:drop-shadow(2px 12px 5px #1d45568f) brightness(1)}50%{transform:translate3d(0,-16px,0);filter:drop-shadow(0 0 15px #75afa7bb) drop-shadow(2px 12px 5px #1d45568f) brightness(1.12)}}
+
+/* 대화는 이름: 대사 한 줄을 먼저 읽고, 선택지는 그 아래에서 빠르게 고른다. */
+.talk-panel{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:5px!important;padding:10px 11px!important}
+.talk-panel small{display:none!important}
+.talk-panel>b,.talk-panel>p{display:block!important;min-width:0!important;margin:0!important;line-height:1.35!important;white-space:nowrap!important}
+.talk-panel>b{flex:0 0 auto!important;padding-right:0!important;font-size:14px!important}.talk-panel>b::after{content:":"!important}.talk-panel p{flex:1 1 0!important;overflow:hidden!important;padding-right:30px!important;font-size:12px!important;text-overflow:ellipsis!important}
+.talk-panel>button:not(.close){flex:0 0 100%!important;min-height:39px!important;margin-top:0!important;padding:8px!important;font-size:10px!important;line-height:1.25!important}.talk-panel .close{top:6px!important;right:6px!important}
+
+/* 도감은 목록 시작과 카드 사이의 빈 공간을 줄여 더 많은 청년 기록을 한 화면에 담는다. */
+.archive-view{padding:76px 11px 74px!important}.archive-view .title-block{margin:0 0 7px!important}.archive-view .title-block h1{margin:1px 0 3px!important}.archive-grid{gap:5px!important}.archive-card{min-height:116px!important}.archive-detail-view{padding:10px 12px 74px!important}.archive-detail-view>header{top:-10px!important;margin:0 -12px 9px!important;padding:9px 12px!important}.archive-profile-record,.archive-profile-dialogue{margin-top:8px!important}.archive-profile-dialogue li{padding:7px!important}.archive-meet-again{margin-top:9px!important}
+
+/* 내부 그림자와 별개로 앵커 컨테이너를 직접 이동시켜 어느 화면에서도 부유감이 보이게 한다. */
+.ar-person.found{animation:ar-container-float 1.45s cubic-bezier(.42,0,.58,1) infinite!important;will-change:transform!important}
+@keyframes ar-container-float{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-15px)}}
+
+/* 현장 카메라 화면에서 청년이 배경을 과도하게 가리지 않도록 소폭 축소한다. */
+.ar-person.found{width:250px!important;height:436px!important}.ar-person.character-sleep{width:250px!important;height:436px!important}
+
+/* AR 기록: 실제 카메라 배경과 청년 조우를 기기 저장·공유용 이미지로 남긴다. */
+.ar-record-tools{position:absolute;z-index:25;top:118px;left:12px;display:flex;gap:5px}.ar-record-tools button{display:flex;align-items:center;gap:4px;padding:6px 7px;color:var(--i);background:#f7f1e3ee;border:1px solid var(--a);box-shadow:2px 2px 0 #1d455655;font-size:9px;font-weight:900}.ar-record-tools button:disabled{opacity:.55}.ar-record-note{position:absolute;z-index:29;top:154px;left:12px;max-width:220px;padding:5px 7px;color:var(--p);background:#1d4556e8;font-size:9px;line-height:1.35}.archive-team-guide,.archive-team-role{margin:7px 0;padding:9px 10px;color:var(--i);background:#75afa71c;border:1px solid #75afa7a0}.archive-team-guide span,.archive-team-role span{display:block;color:var(--a);font:8px 'IBM Plex Mono',monospace}.archive-team-guide b,.archive-team-role b{display:block;margin:3px 0;font-size:12px}.archive-team-guide p,.archive-team-role p{margin:0;font-size:9px;line-height:1.45}.archive-team-guide strong{color:var(--i)}.archive-team-role small{display:block;margin-top:5px;color:#1d4556bb;font-size:8px;line-height:1.4}
