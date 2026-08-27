@@ -7,6 +7,8 @@ import "../ActionOps.css";
 import "../LayoutFixes.css";
 import { Bell, BookOpen, Camera, ChevronRight, Dices, HeartPulse, Map, Navigation, PackageOpen, ScanLine, ShieldCheck, Sparkles, Swords, Trophy, X } from "lucide-react";
 import { canNativeShareArRecord, createArRecord, downloadArRecord } from "@/lib/arRecord";
+/* 장소 좌표·반경과 거리 계산은 진단 화면(/diag)과 공유한다. @/lib/venue 한 곳에서만 정의한다. */
+import { DREAM_WORKSHOP, distanceMeters } from "@/lib/venue";
 
 type Screen="ar"|"cards"|"story"|"battle"|"bag";
 type Attribute="감정"|"분석"|"도전"|"체력"|"영감";
@@ -67,7 +69,6 @@ const ZONE_AR_POOLS:Record<ZoneId,string[]>={lobby:["work","run","sleep","fieldw
    (이전에는 시연 편의를 위해 카드 8장과 호감도가 미리 채워져 있어 첫 실행부터 스토리가 열려 있었다.)
    이미 진행 중인 기기의 localStorage 기록은 load()에서 stored 값이 우선하므로 영향받지 않는다. */
 const DEFAULT:Save={copies:{},item:false,evidence:0,endings:[],inventory:{},talkTurns:{},affection:{},places:[]};
-const DREAM_WORKSHOP={lat:37.6370663,lon:126.8357919,radiusM:180};
 // 운영자 사전 등록 지점: 현장 답사 후 좌표·이름·아이템만 이 목록에서 관리합니다. 사용자 화면에는 등록 기능이 노출되지 않습니다.
 const FIELD_OBJECTS:PlacePin[]=[
   {id:"cafe-lamp",name:"카페 창가 조명",info:"늦은 밤에도 남아 있던 따뜻한 조명입니다.",item:"따뜻한 메모",icon:"☀",itemDesc:"누군가의 하루를 응원하는 짧은 문장이 적힌 접힌 메모입니다.",lat:37.637025,lon:126.835846},
@@ -90,7 +91,6 @@ const BLOCKS:Record<FloorKey,Block[]>={
 };
 const load=():Save=>{try{const raw=localStorage.getItem(SAVE_KEY);const stored=(raw?JSON.parse(raw):{}) as Partial<Save>;return {...DEFAULT,...stored,inventory:{...DEFAULT.inventory,...(stored.inventory||{})},talkTurns:{...DEFAULT.talkTurns,...(stored.talkTurns||{})},affection:{...DEFAULT.affection,...(stored.affection||{})}}}catch{return DEFAULT}};
 const level=(save:Save,id:string)=>Math.min(5,1+Math.floor((save.copies[id]||0)/2));
-const distanceMeters=(lat:number,lon:number)=>{const r=6371000;const a=Math.sin((lat-DREAM_WORKSHOP.lat)*Math.PI/360)**2+Math.cos(DREAM_WORKSHOP.lat*Math.PI/180)*Math.cos(lat*Math.PI/180)*Math.sin((lon-DREAM_WORKSHOP.lon)*Math.PI/360)**2;return 2*r*Math.asin(Math.sqrt(a))};
 const distanceBetween=(a:{lat:number;lon:number},b:{lat:number;lon:number})=>{const r=6371000;const dLat=(b.lat-a.lat)*Math.PI/180;const dLon=(b.lon-a.lon)*Math.PI/180;const h=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)**2;return 2*r*Math.asin(Math.sqrt(h))};
 const normalizeBearing=(bearing:number)=>((bearing%360)+360)%360;
 const bearingBetween=(from:GeoPoint,to:GeoPoint)=>{const lat1=from.lat*Math.PI/180;const lat2=to.lat*Math.PI/180;const dLon=(to.lon-from.lon)*Math.PI/180;const y=Math.sin(dLon)*Math.cos(lat2);const x=Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);return normalizeBearing(Math.atan2(y,x)*180/Math.PI)};

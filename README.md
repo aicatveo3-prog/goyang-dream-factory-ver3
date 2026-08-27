@@ -85,6 +85,16 @@ DEPLOY_BASE=/goyang-dream-factory-ver3/ pnpm exec vite build --config vite.stati
 
 이미지 경로는 `import.meta.env.BASE_URL`을 기준으로 조립되므로 하위 경로에서도 깨지지 않습니다.
 
+배포 절차와 현장 확인 순서는 [`docs/배포와-현장테스트.md`](docs/배포와-현장테스트.md)에 정리되어 있습니다.
+
+## 진단 화면 `/diag`
+
+실기기에서 **카메라·GPS·나침반**이 실제로 동작하는지 확인하는 화면입니다. 휴대폰에서는 개발자도구를 열 수 없으므로, 센서 값을 화면에 직접 표시하고 결과를 텍스트로 복사할 수 있게 했습니다.
+
+- 게임 세이브를 읽거나 쓰지 않으므로 진행에 영향이 없습니다. 프로덕션에서도 접근할 수 있습니다.
+- 표시 항목: HTTPS 여부, UserAgent, 카메라 해상도·facingMode, GPS 좌표·정확도·꿈제작소까지 거리·반경 판정, `webkitCompassHeading`(iOS), `deviceorientation`과 `deviceorientationabsolute` 이벤트 수, `absolute` 플래그, 계산된 방위.
+- 안드로이드 방위 문제를 진단할 때는 **`deviceorientationabsolute` 이벤트 수**가 핵심 단서입니다.
+
 ## 이미지 자산
 
 게임 이미지 20개는 저장소에 포함되어 있지 않습니다. 넣는 방법과 파일 목록은 **[`client/public/game/README.md`](client/public/game/README.md)** 를 참고하세요.
