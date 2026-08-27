@@ -11,8 +11,10 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
 
-// GitHub Pages 하위 경로 배포용. 루트 도메인에 올릴 때는 '/' 로 바꾼다.
-const base = process.env.DEPLOY_BASE ?? "/goyang-dream-factory-ver2/";
+// 기본값은 루트 도메인 배포(Vercel 등)를 가정한다.
+// GitHub Pages처럼 하위 경로에 올릴 때만 DEPLOY_BASE로 덮어쓴다.
+//   예: DEPLOY_BASE=/goyang-dream-factory-ver3/ pnpm exec vite build --config vite.static.config.ts
+const base = process.env.DEPLOY_BASE ?? "/";
 
 export default defineConfig({
   base,

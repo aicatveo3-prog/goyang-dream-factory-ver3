@@ -1,6 +1,8 @@
 {
   "name": "youth-echo-ar",
   "version": "1.0.0",
+  "description": "YOUTH ECHO — 고양 내일꿈제작소 현장 AR 카드 수집·배틀 게임과 행사 완주 코드 운영 도구",
+  "private": true,
   "type": "module",
   "license": "MIT",
   "scripts": {
