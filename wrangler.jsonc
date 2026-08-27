@@ -1,0 +1,22 @@
+/**
+ * Cloudflare Workers(정적 자산) 배포 설정.
+ *
+ * Cloudflare가 Pages와 Workers를 하나의 경험으로 통합하면서, 신규 프로젝트는
+ * Workers 쪽으로 안내된다. 대시보드에 Pages 탭이 보이지 않는 경우 이 설정으로
+ * 같은 결과를 얻을 수 있다.
+ *
+ * 서버 코드 없이 정적 파일만 서빙하므로 "main" 항목이 없다.
+ * _headers 와 _redirects 는 dist-static 안에 함께 배포되며 Workers 에서도 적용된다.
+ *
+ * Pages 로 배포하는 경우 이 파일은 사용되지 않는다(vercel.json 과 같은 관계).
+ */
+{
+  "name": "youth-echo",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./dist-static",
+    // 실제 파일이 없는 경로는 index.html 로 넘겨 wouter 가 처리하게 한다.
+    // 존재하는 파일(/assets/*, /game/*)은 그대로 서빙된다.
+    "not_found_handling": "single-page-application"
+  }
+}

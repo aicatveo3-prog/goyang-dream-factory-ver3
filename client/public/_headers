@@ -1,16 +1,16 @@
-# Cloudflare Pages 응답 헤더. vercel.json의 헤더 설정과 동일한 의도를 유지한다.
+# Cloudflare 응답 헤더 (Pages / Workers 정적 자산 공통)
+#
+# 주의: 같은 폴더에 _redirects 를 두지 않는다.
+# Cloudflare 의 _redirects 규칙은 "자산이 요청과 일치하는지 여부와 무관하게 항상 적용"되므로
+# `/* /index.html 200` 같은 SPA 규칙을 넣으면 /assets/*.js 까지 index.html 로 덮여 앱이 깨진다.
+# SPA 폴백은 Pages 가 자동 처리하고(최상위 404.html 이 없으면 SPA 로 간주),
+# Workers 는 wrangler.jsonc 의 not_found_handling 이 처리한다.
 
-# 파일명에 콘텐츠 해시가 붙는 번들 산출물은 영구 캐시한다.
+# 파일명에 콘텐츠 해시가 붙는 번들 산출물만 영구 캐시한다.
+# (Cloudflare 문서가 권장하는 예외 사례다. 그 외 경로는 기본 캐시 정책이 더 안전하다.)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# 게임 이미지는 파일명이 고정이라 나중에 교체될 수 있으므로 짧게 캐시한다.
-/game/*
-  Cache-Control: public, max-age=3600, must-revalidate
-
-# AR에 필요한 기기 권한을 명시적으로 허용한다. 이 헤더가 없으면 일부 브라우저에서
-# 카메라·위치·자기센서 접근이 차단될 수 있다.
+# AR 에 필요한 기기 권한을 명시적으로 허용한다.
 /*
   Permissions-Policy: camera=(self), geolocation=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self)
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
