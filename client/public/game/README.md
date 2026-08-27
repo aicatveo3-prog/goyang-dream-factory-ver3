@@ -1,77 +1,76 @@
 # 게임 이미지 자산 폴더
 
-이 폴더에 이미지 파일을 넣으면 게임에 **즉시** 반영됩니다. 빌드 설정을 고칠 필요가 없습니다.
+이 폴더에 이미지를 넣으면 게임에 **즉시** 반영됩니다. 코드를 고칠 필요가 없습니다.
 
-이전에는 이 이미지들을 Manus 플랫폼의 비공개 스토리지(`/manus-storage/*`)에서 프록시로 가져왔습니다.
-그 방식은 Manus 환경 밖(예: Vercel 정적 배포)에서 전부 404가 되므로, 저장소 안에서 직접 서빙하도록 바꿨습니다.
+- 파일 형식은 **전부 PNG**입니다. 확장자를 신경 쓸 필요가 없습니다.
+- 캐릭터는 **배경이 투명한 PNG**여야 합니다. 흰 배경이면 네모난 흰 판이 그대로 보입니다.
+- 인물의 **발이 이미지 아래쪽에 닿게** 잘려 있어야 바닥 그림자 정렬이 맞습니다.
+- 크기는 원본 그대로 넣으세요. 표시 크기는 CSS에서 캐릭터별로 조정되어 있습니다.
+
+## GitHub 웹에서 올리는 방법
+
+1. GitHub에서 이 폴더(`client/public/game/`)로 이동합니다.
+2. 우측 위 **`Add file`** → **`Upload files`** 를 누릅니다.
+3. 파일을 드래그해서 놓습니다. **파일명을 아래 표와 정확히 같게 미리 바꿔두세요.**
+4. 아래 `Commit changes` 를 누릅니다.
+5. 약 1~2분 뒤 사이트에 자동 반영됩니다.
 
 ## 넣어야 하는 파일 (총 20개)
 
-파일명을 **아래와 정확히 같게** 맞춰주세요. 대소문자와 확장자까지 일치해야 합니다.
-
 ### 청년 캐릭터 (14개)
 
-| 파일명 | 캐릭터 | 원래 Manus 파일명 |
-|---|---|---|
-| `worker-female.png` | 일하는 청년(여) | `worker-female-v2_18323621.png` |
-| `worker-male.png` | 일하는 청년(남) | `worker-male-v2_61df3cdf.png` |
-| `thinker.png` | 생각하는 청년 | `thinker-v2_4f60cbce.png` |
-| `researcher.png` | 연구하는 청년 | `researcher-v2_eeaeffd0.png` |
-| `student.png` | 공부하는 청년 | `student-v2_c00f9648.png` |
-| `sleeper.png` | 졸린 청년 | `sleeper-v2_dc0334f1.png` |
-| `sleeping.png` | 자는 청년(가로형·침대) | `sleeping-v2_bfde4814.png` |
-| `dancer-female.png` | 춤추는 청년(여) | `dancer-female-v2_a9baaa05.png` |
-| `dancer-male.png` | 춤추는 청년(남) | `dancer-male-v2_7a6eb01c.png` |
-| `artist.png` | 화가 (스토리 NPC) | `artist-v2_015d483b.png` |
-| `doctor.png` | 이상한 박사 (보스) | `doctor-v2_a2a5d149.png` |
-| `youth-challenge.webp` | 도전하는 청년 | `youth-challenge_ed81ed38.webp` |
-| `youth-coder.webp` | 코딩하는 청년 | `youth-coder_40569f05.webp` |
-| `youth-excited.webp` | 들뜬 청년 | `youth-excited_6ed9778d.webp` |
+| 파일명 | 어떤 캐릭터인가 |
+|---|---|
+| `worker-male.png` | 정장 입은 남성. 피곤한 표정으로 눈을 비비고 커피와 가방을 들었다 |
+| `worker-female.png` | 정장 입은 여성. 피곤한 표정으로 눈을 비비고 커피와 가방을 들었다 |
+| `thinker.png` | 하늘색 후드티. 턱에 손을 대고 생각하는 자세 |
+| `researcher.png` | 검은 머리에 안경. 주변에 수식이 떠 있고 백팩을 멨다 |
+| `youth-coder.png` | 체크 셔츠에 안경. 노트북을 들고 화면에 차트가 보인다 |
+| `sleeper.png` | 앉아서 졸고 있는 청년. 남색 후드티, 커피를 들고 눈을 감았다 |
+| `sleeping.png` | **가로형.** 침대에서 이불을 덮고 자는 모습 |
+| `dancer-female.png` | 검은 옷을 입고 점프하며 춤추는 여성 |
+| `dancer-male.png` | 초록 체크 셔츠를 입고 점프하는 남성 |
+| `artist.png` | 화가. 보라색 머리, 앞치마, 팔레트와 붓을 들었다 |
+| `student.png` | 공부하는 청년 (**아직 없음**) |
+| `youth-challenge.png` | 도전하는 청년 (**아직 없음**) |
+| `youth-excited.png` | 들뜬 청년 (**아직 없음**) |
+| `doctor.png` | 이상한 박사. 흰 머리가 뻗쳤고 고글·흰 가운·광선총 |
 
 ### 보스 (1개)
 
-| 파일명 | 용도 | 원래 Manus 파일명 |
-|---|---|---|
-| `sigh-clump.webp` | 한숨덩이 | `sigh-clump_4771e8f8.webp` |
+| 파일명 | 어떤 캐릭터인가 |
+|---|---|
+| `sigh-clump.png` | 한숨덩이. 회색 덩어리에 파란 눈, 입이 물결 모양 |
 
 ### 배경 (4개)
 
-| 파일명 | 용도 | 원래 Manus 파일명 |
-|---|---|---|
-| `ar-lobby.png` | AR 탐색 화면 배경 | `dreamworks-bright-ar-lobby_ee89b650.png` |
-| `floor-1.png` | 스토리 A동 1층 | `dreamworks-25d-floor1_9d9de4f4.png` |
-| `floor-2-3.png` | 스토리 A동 2~3층 | `dreamworks-25d-floor2-3_2f84facd.png` |
-| `floor-4-bwing.png` | 스토리 A동 4층 · B동 | `dreamworks-25d-floor4-bwing_12447917.png` |
+| 파일명 | 어떤 배경인가 |
+|---|---|
+| `ar-lobby.png` | AR 탐색 화면 배경. 밝은 실내 |
+| `floor-1.png` | 스토리 A동 1층. 북스텝(목재 계단 좌석)과 카페가 있는 밝은 공간 |
+| `floor-2-3.png` | 스토리 A동 2~3층 (**아직 없음**) |
+| `floor-4-bwing.png` | 스토리 A동 4층 · B동 (**아직 없음**) |
+
+> `ar-lobby.png` 와 `floor-1.png` 은 같은 그림을 **두 개 이름으로 복사해서** 넣어도 됩니다.
+> 둘 다 밝은 1층 실내를 쓰기 때문입니다.
 
 ### 로고 (1개)
 
-| 파일명 | 용도 | 원래 Manus 파일명 |
-|---|---|---|
-| `echo-mark.png` | 상단 브랜드 마크 + 파비콘 | `echo-mark_4e55f7e6.png` |
+| 파일명 | 용도 |
+|---|---|
+| `echo-mark.png` | 화면 상단 브랜드 마크와 브라우저 탭 아이콘 (**아직 없음**) |
 
-## 파일 규격
+## 아직 없는 이미지가 있어도 괜찮습니다
 
-- **캐릭터·보스**: 배경이 투명한 PNG 또는 WebP. 인물이 이미지 하단에 발이 닿게 배치되어야 바닥 그림자 정렬이 맞습니다.
-- **배경**: 불투명 PNG. 세로형 화면에서 가로로 넓게 패닝하므로 가로가 긴 이미지가 적합합니다.
-- **로고**: 정사각형에 가까운 투명 PNG.
-- 원본 파일이 있다면 **크기를 조정하지 말고 그대로** 넣어주세요. 표시 크기는 CSS에서 캐릭터별로 미세 조정되어 있습니다.
+없는 것은 `client/src/StaticFallback.css` 가 CSS 픽셀 아트로 대신 그립니다.
+있는 것부터 올리시면 그만큼 화면이 좋아집니다.
 
-## 원본 파일명으로 갖고 있는 경우
+## 20개를 모두 넣은 뒤에 할 일
 
-Manus 원본 파일명(해시가 붙은 형태)을 그대로 갖고 있다면, 이 폴더에 넣고 저장소 루트에서 아래를 실행하면 한 번에 이름이 정리됩니다.
-
-```bash
-bash scripts/rename-game-assets.sh
-```
-
-## 이미지가 아직 없을 때
-
-이미지가 없어도 게임은 동작합니다. `client/src/StaticFallback.css`가 CSS 픽셀 아트 캐릭터와
-대체 배경을 그려줍니다. 다만 완성도가 원본보다 낮으므로 정식 출시 전에는 원본을 넣어야 합니다.
-
-**원본 이미지를 모두 넣은 뒤에는** `client/src/main.tsx`의 아래 한 줄을 삭제하세요.
-그래야 폴백이 꺼지고 원본 PNG가 표시됩니다.
+`client/src/main.tsx` 에서 아래 한 줄을 지우면 폴백이 꺼지고 원본 이미지만 표시됩니다.
 
 ```ts
 import "./StaticFallback.css";
 ```
+
+이 줄이 남아 있으면 원본 이미지가 있어도 CSS 픽셀 캐릭터가 함께 보일 수 있습니다.
