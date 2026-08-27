@@ -31,8 +31,8 @@ const EVENT_NOTICE_KEY="youth-echo-event-notice-v1";
    필요한 파일 목록과 규격은 client/public/game/README.md 를 참고한다. */
 const ASSET_BASE=`${import.meta.env.BASE_URL||"/"}`.replace(/\/*$/,"/")+"game/";
 const gameAsset=(file:string)=>`${ASSET_BASE}${file}`;
-const ASSET={arLobby:gameAsset("ar-lobby.png"),floor1:gameAsset("floor-1.png"),floor23:gameAsset("floor-2-3.png"),floor4b:gameAsset("floor-4-bwing.png"),mark:gameAsset("echo-mark.png"),challenge:gameAsset("youth-challenge.webp"),researcher:gameAsset("researcher.png"),excited:gameAsset("youth-excited.webp"),thinker:gameAsset("thinker.png"),artist:gameAsset("artist.png"),dancerA:gameAsset("dancer-male.png"),sleeper:gameAsset("sleeper.png"),workerA:gameAsset("worker-female.png"),workerB:gameAsset("worker-male.png"),coder:gameAsset("youth-coder.webp"),student:gameAsset("student.png"),doctor:gameAsset("doctor.png"),dancerB:gameAsset("dancer-female.png"),sleeping:gameAsset("sleeping.png")};
-const SIGH_ASSET=gameAsset("sigh-clump.webp");
+const ASSET={arLobby:gameAsset("ar-lobby.png"),floor1:gameAsset("floor-1.png"),floor23:gameAsset("floor-2-3.png"),floor4b:gameAsset("floor-4-bwing.png"),mark:gameAsset("echo-mark.png"),challenge:gameAsset("youth-challenge.png"),researcher:gameAsset("researcher.png"),excited:gameAsset("youth-excited.png"),thinker:gameAsset("thinker.png"),artist:gameAsset("artist.png"),dancerA:gameAsset("dancer-male.png"),sleeper:gameAsset("sleeper.png"),workerA:gameAsset("worker-female.png"),workerB:gameAsset("worker-male.png"),coder:gameAsset("youth-coder.png"),student:gameAsset("student.png"),doctor:gameAsset("doctor.png"),dancerB:gameAsset("dancer-female.png"),sleeping:gameAsset("sleeping.png")};
+const SIGH_ASSET=gameAsset("sigh-clump.png");
 /* 개발·QA용 프리뷰 파라미터(?mode= ?preview= ?profile= ?hud= ?guide=0 등)는 게임 진행을 건너뛸 수 있으므로
    프로덕션 빌드에서는 무시한다. 경품이 걸린 행사에서 URL만으로 배틀·도감·가방에 접근하는 것을 막는다.
    반면 ?test=1(현장 반경 밖에서 체험하는 모드)은 정상 기능이므로 프로덕션에서도 계속 허용한다. */
