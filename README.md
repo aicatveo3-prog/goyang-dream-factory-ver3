@@ -59,17 +59,30 @@ pnpm format   # prettier
 
 카메라·GPS·나침반 API는 보안 컨텍스트에서만 동작합니다. HTTP로 서비스하면 AR이 켜지지 않습니다. 아래 두 플랫폼은 모두 HTTPS를 자동 제공합니다.
 
-### Cloudflare Pages (무료 · 상업적 이용 가능)
+### Cloudflare (무료 · 상업적 이용 가능)
 
-설정 파일이 저장소에 포함되어 있습니다 — `client/public/_redirects`(SPA 라우팅), `client/public/_headers`(캐시 정책과 카메라·위치 권한 헤더). 빌드 시 산출물 루트로 복사됩니다.
+Cloudflare가 Pages와 Workers를 하나의 경험으로 통합하는 중이라 두 경로가 모두 유효합니다. 저장소는 양쪽을 지원합니다.
 
-대시보드에서 GitHub 저장소를 연결한 뒤 아래와 같이 설정합니다.
+**Pages로 배포하는 경우** — 빌드 설정만 넣으면 됩니다.
 
 | 항목 | 값 |
 |---|---|
 | Framework preset | None |
 | Build command | `pnpm install --no-frozen-lockfile --ignore-scripts && DEPLOY_BASE=/ pnpm exec vite build --config vite.static.config.ts` |
 | Build output directory | `dist-static` |
+
+**Workers로 배포하는 경우** — `wrangler.jsonc`가 자산 경로와 SPA 처리를 정의합니다. 배포 명령은 `pnpm exec wrangler deploy`입니다.
+
+#### SPA 라우팅 주의사항
+
+**`_redirects` 파일을 만들지 마세요.** Cloudflare의 `_redirects` 규칙은 [자산이 요청과 일치하는지 여부와 무관하게 항상 적용](https://developers.cloudflare.com/pages/configuration/redirects/)됩니다. 따라서 흔히 쓰이는 `/* /index.html 200` SPA 규칙을 넣으면 `/assets/*.js`까지 `index.html`로 덮여 **앱이 통째로 깨집니다.**
+
+SPA 폴백은 이미 처리되고 있습니다.
+
+- **Pages**: 최상위 `404.html`이 없으면 SPA로 간주해 모든 경로를 루트로 매칭합니다 ([문서](https://developers.cloudflare.com/pages/configuration/serving-pages/)).
+- **Workers**: `wrangler.jsonc`의 `assets.not_found_handling: "single-page-application"`이 처리합니다.
+
+`client/public/_headers`는 번들 자산의 영구 캐시와 AR용 권한 헤더만 지정합니다. Cloudflare가 기본으로 붙이는 헤더(`X-Content-Type-Options`, `Referrer-Policy` 등)는 중복 지정하지 않습니다.
 
 ### Vercel (무료 플랜은 비상업 용도만)
 
