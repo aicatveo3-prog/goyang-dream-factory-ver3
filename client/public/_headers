@@ -1,0 +1,16 @@
+# Cloudflare Pages 응답 헤더. vercel.json의 헤더 설정과 동일한 의도를 유지한다.
+
+# 파일명에 콘텐츠 해시가 붙는 번들 산출물은 영구 캐시한다.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 게임 이미지는 파일명이 고정이라 나중에 교체될 수 있으므로 짧게 캐시한다.
+/game/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# AR에 필요한 기기 권한을 명시적으로 허용한다. 이 헤더가 없으면 일부 브라우저에서
+# 카메라·위치·자기센서 접근이 차단될 수 있다.
+/*
+  Permissions-Policy: camera=(self), geolocation=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self)
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

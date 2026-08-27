@@ -57,7 +57,33 @@ pnpm format   # prettier
 
 ### HTTPS 필수
 
-카메라·GPS·나침반 API는 보안 컨텍스트에서만 동작합니다. HTTP로 서비스하면 AR이 켜지지 않습니다. Vercel은 자동으로 HTTPS를 제공합니다.
+카메라·GPS·나침반 API는 보안 컨텍스트에서만 동작합니다. HTTP로 서비스하면 AR이 켜지지 않습니다. 아래 두 플랫폼은 모두 HTTPS를 자동 제공합니다.
+
+### Cloudflare Pages (무료 · 상업적 이용 가능)
+
+설정 파일이 저장소에 포함되어 있습니다 — `client/public/_redirects`(SPA 라우팅), `client/public/_headers`(캐시 정책과 카메라·위치 권한 헤더). 빌드 시 산출물 루트로 복사됩니다.
+
+대시보드에서 GitHub 저장소를 연결한 뒤 아래와 같이 설정합니다.
+
+| 항목 | 값 |
+|---|---|
+| Framework preset | None |
+| Build command | `pnpm install --no-frozen-lockfile --ignore-scripts && DEPLOY_BASE=/ pnpm exec vite build --config vite.static.config.ts` |
+| Build output directory | `dist-static` |
+
+### Vercel (무료 플랜은 비상업 용도만)
+
+`vercel.json`에 빌드 명령·출력 경로·리라이트·헤더가 모두 정의되어 있어 저장소를 연결하면 추가 설정이 필요하지 않습니다.
+
+단, Vercel의 무료(Hobby) 플랜은 **비상업적 개인 용도로 제한**됩니다. 상업적 이용은 Pro 이상이 필요합니다.
+
+### 하위 경로 배포 (GitHub Pages 등)
+
+```bash
+DEPLOY_BASE=/goyang-dream-factory-ver3/ pnpm exec vite build --config vite.static.config.ts
+```
+
+이미지 경로는 `import.meta.env.BASE_URL`을 기준으로 조립되므로 하위 경로에서도 깨지지 않습니다.
 
 ## 이미지 자산
 
